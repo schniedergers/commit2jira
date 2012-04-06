@@ -2,14 +2,13 @@
 require 'rubygems'
 
 module Commit2Jira
-  PROJECT_REGEX = /\b(CR|SVR|OPS|AN|IP|SI|SEC|LAB|DATA)-(\d+)\b/i
-
-  def from_message(message, &block)
+  def from_message(projects, message, &block)
     if message.nil? or message.empty?
       return
     end
+    regex = /\b(#{projects.join('|')})-(\d+)\b/i
 
-    message.scan(PROJECT_REGEX) do |match|
+    message.scan(regex) do |match|
       project = match[0].upcase
       number = match[1].to_i
 
