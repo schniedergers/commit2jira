@@ -1,5 +1,7 @@
 # commit2jira
 
+[![Build Status](https://buildhive.cloudbees.com/job/lookout/job/commit2jira/badge/icon)](https://buildhive.cloudbees.com/job/lookout/job/commit2jira/)
+
 
 commit2jira is a simple gem for parsing a commit message for JIRAs referenced
 in the meta-data block of the commit body.
