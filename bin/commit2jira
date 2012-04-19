@@ -1,0 +1,37 @@
+#!/usr/bin/env ruby
+
+$:.unshift File.expand_path(File.dirname(__FILE__) + "/../lib")
+
+require 'optparse'
+require 'rubygems'
+require 'commit2jira'
+
+
+
+options = {}
+parser = OptionParser.new do |opts|
+  opts.banner = "Usage: commit2jira [options]"
+
+  opts.on('-p', '--projects=PROJECTS', "Comma separated list of JIRA projects") do |p|
+    options[:projects] = p.split(',')
+  end
+end
+
+parser.parse!
+
+if options[:projects].nil?
+  puts parser
+  exit 1
+end
+
+found = false
+Commit2Jira.from_message(options[:projects], ARGF.read) do |project, number|
+  found = true
+  puts "#{project.upcase}-#{number}"
+end
+
+unless found
+  puts "No JIRAs found!"
+  exit 1
+end
+
