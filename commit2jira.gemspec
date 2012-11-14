@@ -6,8 +6,8 @@ Gem::Specification.new do |s|
   s.version     = "0.2.#{ENV['BUILD_NUMBER'] || 'dev'}"
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["R. Tyler Croy"]
-  s.email       = ["rtyler.croy@mylookout.com"]
-  s.homepage    = 'https://source.flexilis.local/rcroy/commit2jira'
+  s.email       = ["rtyler.croy@lookout.com"]
+  s.homepage    = 'https://github.com/lookout/commit2jira'
   s.summary     = %q{a gem for parsing jiras from commits}
   s.description = %q{Herpy derpy}
 
