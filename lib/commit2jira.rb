@@ -7,7 +7,7 @@ module Commit2Jira
       return
     end
     if precise_match
-      message = message.split("\n").select {|line| line =~ /\Ajira:/i }.join("\n")
+      message = message.split("\n").select {|line| line =~ /\A\s*jira:/i }.join("\n")
     end
 
     regex = /\b(#{projects.join('|')})-(\d+)\b/i
