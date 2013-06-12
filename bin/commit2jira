@@ -15,6 +15,10 @@ parser = OptionParser.new do |opts|
   opts.on('-p', '--projects=PROJECTS', "Comma separated list of JIRA projects") do |p|
     options[:projects] = p.split(',')
   end
+  options[:strict] = false
+  opts.on('-s', '--strict', "Enable strict checking for 'JIRA: ' prefix") do |s|
+    options[:strict] = true
+  end
 end
 
 parser.parse!
@@ -25,7 +29,7 @@ if options[:projects].nil?
 end
 
 found = false
-Commit2Jira.from_message(options[:projects], ARGF.read) do |project, number|
+Commit2Jira.from_message(options[:projects], ARGF.read, options[:strict]) do |project, number|
   found = true
   puts "#{project.upcase}-#{number}"
 end
